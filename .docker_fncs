@@ -1,0 +1,29 @@
+alias docker_minikube="eval $(minikube docker-env)"
+alias docker_normal="eval $(minikube docker-env -U)"
+
+function github_pkg_login {
+    verify "Changes are going to applied to DOCKER_HOST: $DOCKER_HOST. Continue?"
+    cat ~/.github/mbp-read-token | docker login https://docker.pkg.github.com -u frite --password-stdin
+}
+
+function rm_containers {
+    verify "Are you sure you want to remove the containers?"
+    docker rmi $(docker ps -a | awk 'NR>1 {print $1}'
+}
+
+function rm_dangling_images {
+    verify "Are you sure you want to remove dangling images?"
+    docker rm $(docker images | grep none | awk 'NR>1 {print $3}'
+}
+
+function verify {
+    echo $1
+    read -n 1 -r
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+            return 1;
+    else
+            echo "Aborted. Exiting..."
+            exit
+    fi
+}
