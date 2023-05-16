@@ -1,1 +1,0 @@
-export PS=\h:\W\$
