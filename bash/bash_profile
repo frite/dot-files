@@ -1,0 +1,26 @@
+PATH=/usr/local/bin:$PATH
+PATH=$HOME/bin:$PATH
+export PATH
+# https://support.apple.com/en-us/HT208050
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+# TODO: Move both loops in their own function.
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+    # shellcheck source=/dev/null
+  [ -r "${file}" ] && source "${file}"
+done
+
+for file in ~/.dot_files/.{virtualenvwrapper,docker_fncs}; do
+    # shellcheck source=/dev/null
+    [ -r "$file" ] && source "$file"
+done
+unset file
+
+export PATH="$HOME/.poetry/bin:$PATH"
+. "$HOME/.cargo/env"
+
+# Let rbenv manage Ruby
+eval "$(rbenv init - bash)"
