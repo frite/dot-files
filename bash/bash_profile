@@ -24,3 +24,7 @@ export PATH="$HOME/.poetry/bin:$PATH"
 
 # Let rbenv manage Ruby
 eval "$(rbenv init - bash)"
+
+# Prevent homebrew from sending analytics to Google
+# https://docs.brew.sh/Analytics
+export HOMEBREW_NO_GOOGLE_ANALYTICS=1

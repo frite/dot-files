@@ -31,6 +31,7 @@ brew "jq"
 brew "kubernetes-cli"
 brew "lftp"
 brew "libewf"
+brew "mas"
 brew "minikube"
 brew "mupdf"
 brew "neovim"
@@ -59,3 +60,7 @@ cask "idafree"
 cask "osquery"
 cask "phantomjs"
 cask "temurin"
+mas "Slack", id: 803453959
+mas "The Unarchiver", id: 425424353
+mas "Xcode", id: 497799835
+mas "XMind", id: 1327661892
